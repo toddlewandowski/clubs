@@ -1,10 +1,12 @@
-<h1>Listing clubs</h1>
+<p id="notice"><%= notice %></p>
+
+<h1>List of all Clubs</h1>
 
 <table>
   <tr>
     <th>Name</th>
     <th>Start time</th>
-    <th></th>
+    <th>Membership</th>
     <th></th>
     <th></th>
   </tr>
@@ -13,9 +15,9 @@
   <tr>
     <td><%= club.name %></td>
     <td><%= club.start_time.strftime("%I:%M %p") %></td>
-    <td><%= link_to 'Show', club %></td>
+    <td><%= club.users.size %></td>
     <td><%= link_to 'Edit', edit_club_path(club) %></td>
-    <td><%= link_to 'Destroy', club, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', club, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -23,3 +25,10 @@
 <br />
 
 <%= link_to 'New Club', new_club_path %>
+
+<br />
+<br />
+<br />
+
+<%= link_to 'Signup', new_user_path %>
+<%= link_to 'Login', new_session_path %>

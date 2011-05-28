@@ -1,0 +1,28 @@
+<h1>Add or Delete Clubs</h1>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Start time</th>
+    <th>Member? </th>
+    <th>Signup/Dropout</th>
+  </tr>
+
+<%= form_for(@user) do |f| %>
+
+<%= hidden_field_tag "user[club_ids][]", "" %>
+<% @clubs.each do |club| %>
+  <tr>
+    <td><%= club.name %></td>
+    <td><%= club.start_time.strftime("%I:%M %p") %></td>
+    <td><%= @user.clubs.include?(club) ? "Yes" : "No" %></td>
+    <td><%= check_box_tag "user[club_ids][]", club.id, @user.clubs.include?(club) %> </td>
+  </tr>
+<% end %>
+</table>
+
+    <%= f.submit "Update Status" %>
+<% end %>
+
+<%= link_to 'Back', @user %>

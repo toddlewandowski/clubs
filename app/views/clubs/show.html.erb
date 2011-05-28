@@ -7,9 +7,13 @@
 
 <p>
   <b>Start time:</b>
-  <%= @club.start_time %>
+  <%= @club.start_time.strftime("%I:%M %p") %>
 </p>
 
+<p>
+  <b>Membership number: </b>
+  <%= @club.users.size %>
+</p>
 
 <%= link_to 'Edit', edit_club_path(@club) %> |
 <%= link_to 'Back', clubs_path %>

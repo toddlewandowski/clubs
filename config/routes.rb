@@ -1,4 +1,18 @@
 Clubs::Application.routes.draw do
+  resources :users
+
+  resource :session, :only => [:new, :create, :destroy]
+
+  match 'signup' => 'users#new', :as => :signup
+
+  match 'register' => 'users#create', :as => :register
+
+  match 'login' => 'sessions#new', :as => :login
+
+  match 'logout' => 'sessions#destroy', :as => :logout
+
+  match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
+
   resources :clubs
 
   # The priority is based upon order of creation:
@@ -50,7 +64,7 @@ Clubs::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  root :to => "clubs#index"
 
   # See how all your routes lay out with "rake routes"
 
